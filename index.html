@@ -3,12 +3,65 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Pokeredex</title>
+    <title>Pokederex</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='node_modules/bootstrap/dist/css/bootstrap.css'>
+
+    <style>
+        body {
+            background-color: rgb(255, 156, 156);
+        }
+        header {
+            display: block;
+            background-color: rgb(204, 0, 0);
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 65px;
+        }
+        header h1{
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            color: rgb(255, 222, 0);
+        }
+        .ficha {
+            min-height: 100px;
+            margin: 1em;
+            background-color: whitesmoke;
+        }
+        .top-cap{
+            position: relative;
+            top: 70px;
+        }
+    </style>
+
 </head>
 <body>
-    
+    <header>
+        <h1>POKEDEREX</h1>
+    </header>
+
+    <div class="warp">
+        <div class="container top-cap">
+            <div class="row">
+                <div class="col-sm ficha">
+                    <img class="foto" src="" alt="">
+                    <p class="nombre"></p>
+                </div>
+                <div class="col-sm ficha">
+                    <img class="foto" src="" alt="">
+                    <p class="nombre"></p>
+                </div>
+                <div class="col-sm ficha">
+                    <img class="foto" src="" alt="">
+                    <p class="nombre"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src='src/main.js'></script>
 </body>
 </html>
