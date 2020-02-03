@@ -1,2 +1,2 @@
-# Pokederex
- Pokederex online utilizando APIs de pokeapi.co
+# Pokedex
+ Pokedex online utilizando APIs de pokeapi.co
