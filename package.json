@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/DCorbellini/Pokederex/issues"
   },
-  "homepage": "https://github.com/DCorbellini/Pokederex#readme"
+  "homepage": "https://github.com/DCorbellini/Pokederex#readme",
+  "dependencies": {
+    "bootstrap": "^4.4.1"
+  }
 }
