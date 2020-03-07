@@ -1,25 +1,23 @@
-const POKEAPI = "https://pokeapi.co/api/v2/pokemon/"
+/// <reference types="jquery">
 
-function fetchPokemon () {
-fetch(`${POKEAPI}`).then(response => response.json())
-.then (responseJSON => {
-    fetchName(responseJSON)
-})
-.catch(err => {
-    console.log ('Error: ', err)
-})
+const POKEAPI_BASE = "https://pokeapi.co/api/v2/pokemon/"
+
+function fetchPokemon (URL) {
+
+    $.ajax({
+        method: "GET",
+        url: URL,
+        success: response => {
+            qTotalPokemons = response.count
+            const $contenedorCartas = $("#contenedor_cartas")
+        },
+
+        error: () => {
+            $("#cargando").text("Hubo un error al cargar")
+        }
+        
+    })
+    
 }
 
-function fetchName(responseJSON){
-    let nombrePokemon
-    let $main = document.querySelector("#main")
-
-    for (i=0; i < responseJSON.results.length; i++){
-        nombrePokemon = responseJSON.results[i].name;
-        let $nuevoP = document.createElement('p')
-        $nuevoP.textContent = nombrePokemon
-        $main.appendChild($nuevoP)
-    }
-}
-
-fetchPokemon ()
+fetchPokemon (POKEAPI_BASE)
