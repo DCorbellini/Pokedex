@@ -13,7 +13,7 @@ function fetchPokemon (URL) {
         },
 
         error: () => {
-            $("#cargando").text("Hubo un error al cargar")
+            mensajeError ("ajax")
         }
         
     })
@@ -30,7 +30,20 @@ function agregarCarta (response) {
 function contarCartas () {
     if($(".carta").length===40){
         $("#cargando").detach()
-    }
+    }else(
+        mensajeError('contarCartas')
+    )
+}
+
+function mensajeError (err){
+    switch(err) {
+        case 'ajax':
+            $('#cargando').text('Error al cargar la informacion de la API')
+            break
+        case 'contarCartas':
+            $('#cargando').text('Error al mostrar los pokemones')
+            break
+    } 
 }
 
 fetchPokemon (POKEAPI_BASE)
