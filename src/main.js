@@ -8,6 +8,8 @@ function fetchPokemon (URL) {
         method: "GET",
         url: URL,
         success: response => {
+            agregarCarta (response)
+            contarCartas ()
         },
 
         error: () => {
@@ -24,4 +26,11 @@ function agregarCarta (response) {
         $contenedorCartas.append(`<div class="col m-1 rounded carta">${pokemon.name}</div>`)
     });
 }
+
+function contarCartas () {
+    if($(".carta").length===40){
+        $("#cargando").detach()
+    }
+}
+
 fetchPokemon (POKEAPI_BASE)
