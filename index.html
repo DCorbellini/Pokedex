@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
@@ -11,6 +12,7 @@
         body {
             background-color: rgb(255, 156, 156);
         }
+
         header {
             display: block;
             background-color: rgb(204, 0, 0);
@@ -21,45 +23,53 @@
             height: 65px;
             margin-bottom: 1em;
         }
-        header h1{
+
+        header h1 {
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
             display: flex;
             justify-content: center;
             color: rgb(255, 222, 0);
         }
-        #cargando{
+
+        #cargando {
             font-size: 3em;
             font-weight: bold;
             display: flex;
             justify-content: center;
         }
 
-
-
-        .carta{
+        #contenedor-cartas{
+            display: flex;
+            justify-content: center;
+        }
+        .carta {
             background-color: cadetblue;
             text-align: center;
         }
-
     </style>
 
 </head>
+
 <body>
     <header>
         <h1>POKEDEREX</h1>
     </header>
 
-    <div id="cargando">
-        cargando...
-    </div>
+    <div id="warp">
 
-    <div class="container">
-        <div id="contenedor-cartas" class="row row-cols-2 row-cols-md-5"></div>
-    </div>
+        <div id="cargando">
+            cargando...
+        </div>
 
+        <div class="container">
+            <div id="contenedor-cartas" class="row row-cols-2 row-cols-md-5"></div>
+        </div>
+
+    </div>
 
     <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <script src='src/main.js'></script>
 </body>
+
 </html>

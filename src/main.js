@@ -1,6 +1,6 @@
 /// <reference types="jquery">
 
-const POKEAPI_BASE = "https://pokeapi.co/api/v2/pokemon/"
+const POKEAPI_BASE = "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=40"
 
 function fetchPokemon (URL) {
 
@@ -8,12 +8,6 @@ function fetchPokemon (URL) {
         method: "GET",
         url: URL,
         success: response => {
-            qTotalPokemons = response.count
-            const $contenedorCartas = $("#contenedor-cartas")
-            response.results.forEach(pokemon => {
-                $contenedorCartas.append(`<div class="col m-1 rounded carta">${pokemon.name}</div>`)
-            });
-            
         },
 
         error: () => {
@@ -24,4 +18,10 @@ function fetchPokemon (URL) {
     
 }
 
+function agregarCarta (response) {
+    const $contenedorCartas = $("#contenedor-cartas")
+    response.results.forEach(pokemon => {
+        $contenedorCartas.append(`<div class="col m-1 rounded carta">${pokemon.name}</div>`)
+    });
+}
 fetchPokemon (POKEAPI_BASE)
