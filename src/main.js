@@ -9,7 +9,11 @@ function fetchPokemon (URL) {
         url: URL,
         success: response => {
             qTotalPokemons = response.count
-            const $contenedorCartas = $("#contenedor_cartas")
+            const $contenedorCartas = $("#contenedor-cartas")
+            response.results.forEach(pokemon => {
+                $contenedorCartas.append(`<div class="col m-1 rounded carta">${pokemon.name}</div>`)
+            });
+            
         },
 
         error: () => {
