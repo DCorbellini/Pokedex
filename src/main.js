@@ -1,6 +1,7 @@
 /// <reference types="jquery">
 
-const POKEAPI_BASE = "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=40"
+const POKEMONES_POR_PAGINA = 40
+const POKEAPI_BASE = `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=${POKEMONES_POR_PAGINA}`
 const POKEAPI = "https://pokeapi.co/api/v2/pokemon/"
 
 function fetchPokemon(URL) {
@@ -29,7 +30,7 @@ function agregarCarta(response) {
 }
 
 function contarCartas() {
-    if ($(".carta").length === 40) {
+    if ($(".carta").length === POKEMONES_POR_PAGINA) {
         $("#cargando").detach()
         manejarCartas()
     } else (
