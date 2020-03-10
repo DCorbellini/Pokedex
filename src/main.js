@@ -1,8 +1,10 @@
 /// <reference types="jquery">
 
 const POKEMONES_POR_PAGINA = 40
+const LENGUAJE = 'es'
 const POKEAPI_BASE = `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=${POKEMONES_POR_PAGINA}`
-const POKEAPI = "https://pokeapi.co/api/v2/pokemon/"
+const POKEAPI_SPECIES = `https://pokeapi.co/api/v2/pokemon-species/`
+const POKEAPI = `https://pokeapi.co/api/v2/pokemon/`
 
 function fetchPokemon(URL) {
 
@@ -14,9 +16,7 @@ function fetchPokemon(URL) {
             contarCartas()
         },
 
-        error: () => {
-            mensajeError("ajax")
-        }
+        error: () => mensajeError("ajax")
 
     })
 
@@ -48,14 +48,44 @@ function manejarCartas() {
 function mostarInfoPokemon(pokemon) {
     $.ajax({
         method: 'GET',
-        url: POKEAPI+pokemon,
+        url: POKEAPI + pokemon,
         success: response => {
+            fetchInfoPokemon(POKEAPI_SPECIES + pokemon, pokemon)
         },
 
-        error: () => {
-            mensajeError('infoPokemon')
-        }
+        error: () => mensajeError('infoPokemon')
     })
+}
+
+function fetchInfoPokemon(URL, pokemon) {
+    $.ajax({
+        method: 'GET',
+        url: URL,
+        success: response => {
+            let nombrePokemon = conseguirNombre(response.names)
+            let descripcionPokemon = conseguirDescripcion(response.flavor_text_entries)
+
+            $('#modal-titulo').text(nombrePokemon)
+            $('#modal-cuerpo').text(descripcionPokemon)
+        },
+        error: () => mensajeError('infoPokemon')
+    })
+}
+
+function conseguirNombre(nombres) {
+    for (i=0; i<nombres.length; i++){
+        if (nombres[i].language.name == LENGUAJE){
+            return nombres[i].name
+        }
+    }
+}
+
+function conseguirDescripcion(descripciones) {
+    for (i=0; i<descripciones.length; i++){
+        if (descripciones[i].language.name == LENGUAJE){
+            return descripciones[i].flavor_text
+        }
+    }
 }
 
 
