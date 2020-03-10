@@ -40,6 +40,9 @@ function contarCartas() {
 
 function manejarCartas() {
     $('.carta').click(e => {
+        $('#modal-titulo').text('cargando...')
+        $('#modal-imagen').attr('src', '')
+        $('#modal-cuerpo').text('')
         $('#modal').modal('toggle')
         mostarInfoPokemon(e.target.innerText)
     })
