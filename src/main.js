@@ -57,9 +57,11 @@ function mostarInfoPokemon(pokemon) {
                     let infoPokemon = {
                         nombrePokemon: conseguirNombre(informacion.names),
                         descripcionPokemon: conseguirDescripcion(informacion.flavor_text_entries),
+                        URLimagen: pokeapi.sprites.front_default
                     }
         
                     $('#modal-titulo').text(infoPokemon.nombrePokemon)
+                    $('#modal-imagen').attr('src', infoPokemon.URLimagen)
                     $('#modal-cuerpo').text(infoPokemon.descripcionPokemon)
                 },
                 error: () => mensajeError('infoPokemon')
