@@ -49,40 +49,39 @@ function mostarInfoPokemon(pokemon) {
     $.ajax({
         method: 'GET',
         url: POKEAPI + pokemon,
-        success: response => {
-            fetchInfoPokemon(POKEAPI_SPECIES + pokemon, pokemon)
+        success: pokeapi => {
+            $.ajax({
+                method: 'GET',
+                url: POKEAPI_SPECIES+pokemon,
+                success: informacion => {
+                    let infoPokemon = {
+                        nombrePokemon: conseguirNombre(informacion.names),
+                        descripcionPokemon: conseguirDescripcion(informacion.flavor_text_entries),
+                    }
+        
+                    $('#modal-titulo').text(infoPokemon.nombrePokemon)
+                    $('#modal-cuerpo').text(infoPokemon.descripcionPokemon)
+                },
+                error: () => mensajeError('infoPokemon')
+            })
         },
 
         error: () => mensajeError('infoPokemon')
     })
 }
 
-function fetchInfoPokemon(URL, pokemon) {
-    $.ajax({
-        method: 'GET',
-        url: URL,
-        success: response => {
-            let nombrePokemon = conseguirNombre(response.names)
-            let descripcionPokemon = conseguirDescripcion(response.flavor_text_entries)
-
-            $('#modal-titulo').text(nombrePokemon)
-            $('#modal-cuerpo').text(descripcionPokemon)
-        },
-        error: () => mensajeError('infoPokemon')
-    })
-}
 
 function conseguirNombre(nombres) {
-    for (i=0; i<nombres.length; i++){
-        if (nombres[i].language.name == LENGUAJE){
+    for (i = 0; i < nombres.length; i++) {
+        if (nombres[i].language.name == LENGUAJE) {
             return nombres[i].name
         }
     }
 }
 
 function conseguirDescripcion(descripciones) {
-    for (i=0; i<descripciones.length; i++){
-        if (descripciones[i].language.name == LENGUAJE){
+    for (i = 0; i < descripciones.length; i++) {
+        if (descripciones[i].language.name == LENGUAJE) {
             return descripciones[i].flavor_text
         }
     }
