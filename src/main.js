@@ -1,29 +1,26 @@
 /// <reference types="jquery">
 
 const POKEMONES_POR_PAGINA = 40
-let paginaActual = 0
 const LENGUAJE = 'es'
 const POKEAPI_BASE = `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=${POKEMONES_POR_PAGINA}`
 const POKEAPI_SPECIES = `https://pokeapi.co/api/v2/pokemon-species/`
 const POKEAPI = `https://pokeapi.co/api/v2/pokemon/`
 
+let URLAnterior = ''
+let URLSiguiente = ''
 
 
 $('#boton-siguiente').click(e => {
-    if(paginaActual>=24){return}
-    paginaActual++
-    console.log(paginaActual)
-    console.log(`https://pokeapi.co/api/v2/pokemon/?offset=${paginaActual*POKEMONES_POR_PAGINA}&limit=${POKEMONES_POR_PAGINA}`)
-    $('.carta').remove()
-    fetchPokemon(`https://pokeapi.co/api/v2/pokemon/?offset=${paginaActual*POKEMONES_POR_PAGINA}&limit=${POKEMONES_POR_PAGINA}`)
+    if (URLSiguiente) {
+        $('.carta').remove()
+        fetchPokemon(URLSiguiente)  
+    }
 })
 $('#boton-anterior').click(e => {
-    if(paginaActual<=0){return}
-    paginaActual--
-    console.log(paginaActual)
-    console.log(`https://pokeapi.co/api/v2/pokemon/?offset=${paginaActual*POKEMONES_POR_PAGINA}&limit=${POKEMONES_POR_PAGINA}`)
-    $('.carta').remove()
-    fetchPokemon(`https://pokeapi.co/api/v2/pokemon/?offset=${paginaActual*POKEMONES_POR_PAGINA}&limit=${POKEMONES_POR_PAGINA}`)
+    if (URLAnterior) {
+        $('.carta').remove()
+        fetchPokemon(URLAnterior)
+    }
 })
 
 function fetchPokemon(URL) {
@@ -34,6 +31,9 @@ function fetchPokemon(URL) {
         success: response => {
             agregarCarta(response)
             contarCartas()
+
+            URLAnterior = response.previous
+            URLSiguiente = response.next
         },
 
         error: () => mensajeError("ajax")
